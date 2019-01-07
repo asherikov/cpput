@@ -1,0 +1,9 @@
+[submodule "3dparty/better_enums"]
+	path = 3dparty/better_enums
+	url = https://github.com/aantron/better-enums
+[submodule "3dparty/popl"]
+	path = 3dparty/popl
+	url = https://github.com/badaix/popl
+[submodule "googletest"]
+	path = googletest
+	url = https://github.com/google/googletest.git
