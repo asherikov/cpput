@@ -8,7 +8,8 @@
     @brief Basic timer
 */
 
-#pragma once
+#ifndef H_CPPUT_TIMER
+#define H_CPPUT_TIMER
 
 #include <iostream>
 #include <iomanip>
@@ -91,3 +92,5 @@ namespace cpput
             double timediff;
     };
 }
+
+#endif

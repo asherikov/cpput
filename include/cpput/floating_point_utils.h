@@ -9,7 +9,9 @@
         https://github.com/opencv/opencv/blob/3.0.0/modules/hal/include/opencv2/hal/defs.h
 */
 
-#pragma once
+
+#ifndef H_CPPUT_FP_UTILS
+#define H_CPPUT_FP_UTILS
 
 #include <stdint.h>
 #include <string.h>
@@ -49,3 +51,5 @@ namespace cpput
         return ( (raw & 0x7fffffff) == 0x7f800000 );
     }
 }
+
+#endif

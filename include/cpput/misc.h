@@ -8,7 +8,8 @@
     @brief Various one-liners
 */
 
-#pragma once
+#ifndef H_CPPUT_MISC
+#define H_CPPUT_MISC
 
 /**
  * Sometimes it is not possible to omit name of an unused parameter, in such
@@ -16,3 +17,5 @@
  * parameters.
  */
 #define CPPUT_UNUSED_ARG(parameter)   (void)parameter;
+
+#endif

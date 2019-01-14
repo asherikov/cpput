@@ -7,9 +7,8 @@
     @brief Print stacktrace as explained at https://panthema.net/2008/0901-stacktrace-demangled/
 */
 
-
-#ifndef _STACKTRACE_H_
-#define _STACKTRACE_H_
+#ifndef H_CPPUT_PRINT_STACKTRACE
+#define H_CPPUT_PRINT_STACKTRACE
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -100,4 +99,4 @@ namespace cpput
     }
 }
 
-#endif // _STACKTRACE_H_
+#endif

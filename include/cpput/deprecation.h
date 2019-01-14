@@ -8,8 +8,8 @@
     @brief Deprecation macro
 */
 
-#pragma once
-
+#ifndef H_CPPUT_DEPRECATION
+#define H_CPPUT_DEPRECATION
 
 #ifdef __GNUC__
 
@@ -18,5 +18,7 @@
 #else
 
     #define CPPUT_DEPRECATED
+
+#endif
 
 #endif

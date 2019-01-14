@@ -8,7 +8,8 @@
     @brief Throw & assert macro
 */
 
-#pragma once
+#ifndef H_CPPUT_EXCEPTION
+#define H_CPPUT_EXCEPTION
 
 #define CPPUT_THROW_EXCEPTION(exception_type, message) throw exception_type((message))
 
@@ -24,3 +25,5 @@
 
 
 #define CPPUT_PERSISTENT_ASSERT(condition, message) if (!(condition)) {CPPUT_THROW(message);};
+
+#endif

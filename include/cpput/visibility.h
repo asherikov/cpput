@@ -10,6 +10,8 @@
 
 #pragma once
 
+#ifndef H_CPPUT_VISIBILITY
+#define H_CPPUT_VISIBILITY
 
 #if defined _WIN32 || defined __CYGWIN__
     #define CPPUT_LIB_IMPORT __declspec(dllimport)
@@ -42,4 +44,6 @@
     // compiled as a static library
     #define CPPUT_API
     #define CPPUT_LOCAL
+#endif
+
 #endif

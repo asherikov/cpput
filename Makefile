@@ -17,8 +17,10 @@ test: build
 	cp 3dparty/popl/include/popl.hpp include/cpput/popl.h
 
 allheader:
-	echo "#pragma once" > include/cpput/all.h
+	echo "#ifndef H_CPPUT_ALL" > include/cpput/all.h
+	echo "#define H_CPPUT_ALL" >> include/cpput/all.h
 	cd include/cpput; ls *.h | grep -v "all.h" | sed 's/^\(.*\)/#include "\1"/' >> all.h
+	echo "#endif" >> include/cpput/all.h
 	cat include/cpput/all.h
 
 .PHONY: build test 3dparty
