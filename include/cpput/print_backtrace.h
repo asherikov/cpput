@@ -7,8 +7,8 @@
     @brief Print stacktrace as explained at https://panthema.net/2008/0901-stacktrace-demangled/
 */
 
-#ifndef H_CPPUT_PRINT_STACKTRACE
-#define H_CPPUT_PRINT_STACKTRACE
+#ifndef H_CPPUT_PRINT_BACKTRACE
+#define H_CPPUT_PRINT_BACKTRACE
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -18,12 +18,12 @@
 namespace cpput
 {
     /** Print a demangled stack backtrace of the caller function to FILE* out. */
-    static inline void print_stacktrace(FILE *out = stderr, unsigned int max_frames = 63)
+    static inline void print_backtrace(FILE *out = stderr)
     {
         fprintf(out, "stack trace:\n");
 
         // storage array for stack trace address data
-        void* addrlist[max_frames+1];
+        void* addrlist[100];
 
         // retrieve current stack addresses
         int addrlen = backtrace(addrlist, sizeof(addrlist) / sizeof(void*));

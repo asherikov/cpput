@@ -1,9 +1,15 @@
 [submodule "3dparty/better_enums"]
-	path = 3dparty/better_enums
+	path = 3rdparty/better_enums
 	url = https://github.com/aantron/better-enums
 [submodule "3dparty/popl"]
-	path = 3dparty/popl
+	path = 3rdparty/popl
 	url = https://github.com/badaix/popl
 [submodule "googletest"]
 	path = googletest
 	url = https://github.com/google/googletest.git
+[submodule "3dparty/cmakeut"]
+	path = 3rdparty/cmakeut
+	url = https://github.com/asherikov/cmakeut
+[submodule "3dparty/SafeInt"]
+	path = 3rdparty/SafeInt
+	url = https://github.com/dcleblanc/SafeInt

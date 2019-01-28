@@ -5,12 +5,14 @@
     @brief
 */
 
+#include <cpput/config.h>
 #include <cpput/all.h>
 #include <gtest/gtest.h>
 
 
 TEST(Inclusion, Inclusion)
 {
+    cpput::print_backtrace();
     EXPECT_TRUE(true);
 }
 

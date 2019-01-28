@@ -13,11 +13,11 @@
 
 #ifdef __GNUC__
 
-    #define CPPUT_DEPRECATED __attribute__((deprecated))
+#    define CPPUT_DEPRECATED __attribute__((deprecated))
 
 #else
 
-    #define CPPUT_DEPRECATED
+#    define CPPUT_DEPRECATED
 
 #endif
 

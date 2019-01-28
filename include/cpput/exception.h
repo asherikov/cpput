@@ -11,19 +11,25 @@
 #ifndef H_CPPUT_EXCEPTION
 #define H_CPPUT_EXCEPTION
 
+
 #define CPPUT_THROW_EXCEPTION(exception_type, message) throw exception_type((message))
 
-#ifdef CPPUT_COMPILER_SUPPORTS_FUNC_
-    #define CPPUT_THROW(s) CPPUT_THROW_EXCEPTION(std::runtime_error, (std::string("In ") + __func__ + "() // " + (s)))
-#else //
-    #ifdef CPPUT_COMPILER_SUPPORTS_FUNCTION_
-        #define CPPUT_THROW(s) CPPUT_THROW_EXCEPTION(std::runtime_error, (std::string("In ") + __FUNCTION__ + "() // " + (s)))
-    #else //
-        #define CPPUT_THROW(s) CPPUT_THROW_EXCEPTION(std::runtime_error, (s))
-    #endif //
-#endif //
+#ifdef CMAKEUT_COMPILER_SUPPORTS_FUNC_
+#    define CPPUT_THROW(s) CPPUT_THROW_EXCEPTION(std::runtime_error, (std::string("In ") + __func__ + "() // " + (s)))
+#else  //
+#    ifdef CMAKEUT_COMPILER_SUPPORTS_FUNCTION_
+#        define CPPUT_THROW(s)                                                                                         \
+            CPPUT_THROW_EXCEPTION(std::runtime_error, (std::string("In ") + __FUNCTION__ + "() // " + (s)))
+#    else  //
+#        define CPPUT_THROW(s) CPPUT_THROW_EXCEPTION(std::runtime_error, (s))
+#    endif  //
+#endif      //
 
 
-#define CPPUT_PERSISTENT_ASSERT(condition, message) if (!(condition)) {CPPUT_THROW(message);};
+#define CPPUT_PERSISTENT_ASSERT(condition, message)                                                                    \
+    if (!(condition))                                                                                                  \
+    {                                                                                                                  \
+        CPPUT_THROW(message);                                                                                          \
+    };
 
 #endif

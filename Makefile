@@ -1,20 +1,27 @@
-BUILD_DIR=build
+BUILD_DIR?=build
+MAKE_FLAGS?=-j1
+
+default:
+	@grep -v "^	" Makefile | grep -v "^$$"
 
 clean:
 	rm -Rf ${BUILD_DIR}
+	rm -Rf include/cpput/cpput_config.h
 
 build:
 	mkdir -p ${BUILD_DIR}
 	cd ${BUILD_DIR}; cmake ..
-	cd ${BUILD_DIR}; make
+	cd ${BUILD_DIR}; make ${MAKE_FLAGS}
 
 test: build
-	cd build; ${MAKE} test
+	cd build; ${MAKE} ${MAKE_FLAGS} test
 
-3dparty:
+3rdparty:
 	git submodule update --init
-	cp 3dparty/better_enums/enum.h include/cpput/better_enum.h
-	cp 3dparty/popl/include/popl.hpp include/cpput/popl.h
+	cp 3rdparty/better_enums/enum.h include/cpput/better_enum.h
+	cp 3rdparty/popl/include/popl.hpp include/cpput/popl.h
+	cp 3rdparty/SafeInt/SafeInt.hpp include/cpput/safe_int.h
+	${MAKE} allheader
 
 allheader:
 	echo "#ifndef H_CPPUT_ALL" > include/cpput/all.h
@@ -23,4 +30,4 @@ allheader:
 	echo "#endif" >> include/cpput/all.h
 	cat include/cpput/all.h
 
-.PHONY: build test 3dparty
+.PHONY: build test 3rdparty

@@ -16,6 +16,6 @@
  * cases this macro can be used to suppress compiler warnings about unused
  * parameters.
  */
-#define CPPUT_UNUSED_ARG(parameter)   (void)parameter;
+#define CPPUT_UNUSED_ARG(parameter) (void)parameter;
 
 #endif
