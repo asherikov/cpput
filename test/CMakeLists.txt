@@ -34,7 +34,7 @@ set(GOOGLETEST_LIBS "${REPOS_LIBDIR}/${CMAKE_SHARED_MODULE_PREFIX}gtest${CMAKE_S
 
 # --------------
 # required on some non-Linux systems for print_backtrace().
-find_package(Backtrace REQUIRED)
+find_package(Backtrace)
 include_directories ("${Backtrace_INCLUDE_DIRS}")
 # --------------
 

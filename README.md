@@ -1,3 +1,5 @@
+Travis CI: https://travis-ci.org/asherikov/cpput [![Build Status](https://travis-ci.org/asherikov/cpput.svg?branch=master)](https://travis-ci.org/asherikov/cpput)
+
 This repo contains C++ utilities from various sources, all satisfy the
 following conditions:
 
