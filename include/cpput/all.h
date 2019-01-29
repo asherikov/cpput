@@ -1,8 +1,10 @@
 #ifndef H_CPPUT_ALL
 #define H_CPPUT_ALL
 #include "better_enum.h"
+#include "config.h"
 #include "deprecation.h"
 #include "exception.h"
+#include "flags.h"
 #include "floating_point_utils.h"
 #include "location.h"
 #include "math.h"
