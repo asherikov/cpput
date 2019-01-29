@@ -9,6 +9,7 @@ clean:
 	rm -Rf include/cpput/cpput_config.h
 
 build:
+	git submodule update --init
 	mkdir -p ${BUILD_DIR}
 	cd ${BUILD_DIR}; cmake ..
 	cd ${BUILD_DIR}; make ${MAKE_FLAGS}

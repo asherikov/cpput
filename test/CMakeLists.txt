@@ -1,3 +1,5 @@
+set(TEST_LIBS "")
+
 # --------------
 # required to pull googletest
 set(REPOS_INSTALL_PREFIX    "${PROJECT_BINARY_DIR}/extra/")
@@ -29,16 +31,19 @@ cmakeut_add_external_git_project(   TARGET_NAME "TGT_googletest"
                                     PROJECT_DIR "${GOOGLETEST_DIR}"
                                     CMAKE_ARGS   ${GOOGLETEST_ARGS})
 
-set(GOOGLETEST_LIBS "${REPOS_LIBDIR}/${CMAKE_SHARED_MODULE_PREFIX}gtest${CMAKE_STATIC_LIBRARY_SUFFIX}")
+set(TEST_LIBS "${TEST_LIBS};${REPOS_LIBDIR}/${CMAKE_SHARED_MODULE_PREFIX}gtest${CMAKE_STATIC_LIBRARY_SUFFIX}")
 # --------------
 
 # --------------
 # required on some non-Linux systems for print_backtrace().
 find_package(Backtrace)
-include_directories ("${Backtrace_INCLUDE_DIRS}")
+if (Backtrace_FOUND)
+    include_directories ("${Backtrace_INCLUDE_DIRS}")
+    set(TEST_LIBS "${TEST_LIBS};${Backtrace_LIBRARIES}")
+endif()
 # --------------
 
 add_executable(inclusion "./inclusion.cpp")
-target_link_libraries(inclusion ${GOOGLETEST_LIBS} ${Backtrace_LIBRARIES})
+target_link_libraries(inclusion "${TEST_LIBS}")
 add_dependencies(inclusion TGT_googletest)
 add_test(NAME inclusion COMMAND inclusion)
