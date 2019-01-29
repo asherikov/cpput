@@ -32,4 +32,10 @@
         CPPUT_THROW(message);                                                                                          \
     };
 
+#ifdef DNDEBUG
+#    define CPPUT_ASSERT(condition, message)
+#else
+#    define CPPUT_ASSERT(condition, message) CPPUT_PERSISTENT_ASSERT(condition, message)
+#endif
+
 #endif
