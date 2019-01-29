@@ -18,7 +18,7 @@ include_directories (BEFORE SYSTEM  "${REPOS_INCLUDE_DIR}")
 
 # --------------
 # required for tests
-set(GOOGLETEST_DIR  "${PROJECT_SOURCE_DIR}/googletest")
+set(GOOGLETEST_DIR  "${CMAKE_CURRENT_LIST_DIR}/googletest")
 
 set(GOOGLETEST_ARGS
     ${REPOS_ARGS}
