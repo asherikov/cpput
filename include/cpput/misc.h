@@ -18,4 +18,6 @@
  */
 #define CPPUT_UNUSED_ARG(parameter) (void)parameter;
 
+#define CPPUT_MACRO_SUBSTITUTE(macro) macro
+
 #endif
