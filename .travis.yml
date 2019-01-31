@@ -7,11 +7,20 @@ notifications:
         on_success: always
         on_failure: always
 
-jobs:
-    include:
+compiler:
+    - clang
+    - gcc
 
-      - os: linux
-        dist: trusty
+os: linux
+dist: trusty
 
-        script:
-          - make test
+addons:
+    apt:
+        update: true
+        packages:
+          - libboost-all-dev
+          - libeigen3-dev
+
+script:
+  - git submodule update --init
+  - make test

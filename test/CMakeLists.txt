@@ -1,37 +1,13 @@
 set(TEST_LIBS "")
+set(TEST_TARGETS "")
+set(TEST_FLAGS "")
+include(cmakeut_add_cpp_test)
 
 # --------------
-# required to pull googletest
-set(REPOS_INSTALL_PREFIX    "${PROJECT_BINARY_DIR}/extra/")
-set(REPOS_LIBDIR            "${REPOS_INSTALL_PREFIX}/lib")
-set(REPOS_INCLUDE_DIR       "${REPOS_INSTALL_PREFIX}/include")
-
-set(REPOS_ARGS
-    --no-warn-unused-cli
-    -DCMAKE_INSTALL_PREFIX=${REPOS_INSTALL_PREFIX}
-    -DCMAKE_INSTALL_LIBDIR=${REPOS_LIBDIR}
-    -DCMAKE_VERBOSE_MAKEFILE=${CMAKE_VERBOSE_MAKEFILE}
-    -DCMAKE_BUILD_TYPE=Release)
-
-include_directories (BEFORE SYSTEM  "${REPOS_INCLUDE_DIR}")
-# --------------
-
-# --------------
-# required for tests
-set(GOOGLETEST_DIR  "${CMAKE_CURRENT_LIST_DIR}/googletest")
-
-set(GOOGLETEST_ARGS
-    ${REPOS_ARGS}
-    -DBUILD_GMOCK=OFF
-    -DBUILD_GTEST=ON
-    -Dgtest_disable_pthreads=ON
-    "-DCMAKE_CXX_FLAGS=-fPIC")
-
-cmakeut_add_external_git_project(   TARGET_NAME "TGT_googletest"
-                                    PROJECT_DIR "${GOOGLETEST_DIR}"
-                                    CMAKE_ARGS   ${GOOGLETEST_ARGS})
-
-set(TEST_LIBS "${TEST_LIBS};${REPOS_LIBDIR}/${CMAKE_SHARED_MODULE_PREFIX}gtest${CMAKE_STATIC_LIBRARY_SUFFIX}")
+find_package(Boost REQUIRED unit_test_framework timer system)
+include_directories(SYSTEM ${Boost_INCLUDE_DIRS})
+set(TEST_LIBS "${TEST_LIBS};${Boost_UNIT_TEST_FRAMEWORK_LIBRARIES};${Boost_SYSTEM_LIBRARIES};${Boost_TIMER_LIBRARIES}")
+set(TEST_FLAGS "${TEST_FLAGS};-Wno-c99-extensions")
 # --------------
 
 # --------------
@@ -43,7 +19,4 @@ if (Backtrace_FOUND)
 endif()
 # --------------
 
-add_executable(inclusion "./inclusion.cpp")
-target_link_libraries(inclusion "${TEST_LIBS}")
-add_dependencies(inclusion TGT_googletest)
-add_test(NAME inclusion COMMAND inclusion)
+cmakeut_add_cpp_test(inclusion LIBS "${TEST_LIBS}" FLAGS "${TEST_FLAGS}")

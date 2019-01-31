@@ -7,18 +7,11 @@
 
 #include <cpput/config.h>
 #include <cpput/all.h>
-#include <gtest/gtest.h>
+#include "boost_utf_common.h"
 
 
-TEST(Inclusion, Inclusion)
+BOOST_AUTO_TEST_CASE(Inclusion)
 {
     cpput::print_backtrace();
-    EXPECT_TRUE(true);
-}
-
-
-int main(int argc, char **argv)
-{
-    ::testing::InitGoogleTest(&argc, argv);
-    return RUN_ALL_TESTS();
+    BOOST_REQUIRE(true);
 }

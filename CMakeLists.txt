@@ -8,7 +8,6 @@ include(CMakeParseArguments)
 
 list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake/")
 list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/3rdparty/cmakeut/cmake")
-include(cmakeut_add_external_git_project)
 include(cmakeut_compiler_flags)
 include(cpput_config)
 # --------------
