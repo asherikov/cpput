@@ -7,7 +7,14 @@ include(ExternalProject)
 include(CMakeParseArguments)
 
 list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake/")
-list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/3rdparty/cmakeut/cmake")
+
+find_package(cmakeut)
+if(cmakeut_FOUND)
+    set(CMAKE_MODULE_PATH "${cmakeut_PATH}")
+    list(APPEND CMAKE_MODULE_PATH "${cmakeut_PATH}")
+else()
+    list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/3rdparty/cmakeut/cmake")
+endif()
 include(cmakeut_compiler_flags)
 include(cpput_config)
 # --------------
