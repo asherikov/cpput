@@ -4,12 +4,29 @@ project (cpput CXX)
 
 
 # --------------
+# Detect catkin
+# --------------
+if(CATKIN_DEVEL_PREFIX)
+    message(STATUS "Building with catkin.")
+    set(CPPUT_CATKIN_BUILD ON)
+endif()
+# --------------
+
+
+# --------------
 # Options
 # --------------
-set(CPPUT_ID  "CPPUT" CACHE STRING "Overrides header guards, namespace, installation path (does not apply to 3rdparty headers).")
-set(CPPUT_SELECT_HEADERS       "" CACHE STRING "Selection a subset of headers for installation.")
-option(CPPUT_BUILD_TESTS       "Build tests" ON)
 set(CMAKE_VERBOSE_MAKEFILE     ON)
+if (CPPUT_CATKIN_BUILD)
+    set(CPPUT_ID  "CPPUT")
+    if(CATKIN_ENABLE_TESTING)
+        set(CPPUT_BUILD_TESTS ON)
+    endif()
+else()
+    set(CPPUT_ID  "CPPUT" CACHE STRING "Overrides header guards, namespace, installation path (does not apply to 3rdparty headers).")
+    set(CPPUT_SELECT_HEADERS       "" CACHE STRING "Selection a subset of headers for installation.")
+    option(CPPUT_BUILD_TESTS       "Build tests" ON)
+endif()
 # --------------
 
 
@@ -72,43 +89,58 @@ endif()
 # --------------
 # Packaging
 # --------------
-if (NOT CPPUT_EMBEDDED)
-    include(CMakePackageConfigHelpers)
-    set(CPPUT_INSTALL_PATH "${CMAKE_INSTALL_PREFIX}/share/cpput/")
-    set(CPPUT_INCLUDES "${CMAKE_INSTALL_PREFIX}/include")
+if (CPPUT_CATKIN_BUILD)
+    find_package(catkin REQUIRED)
+    catkin_package()
+    set(CMAKEUT_INSTALL_PATH "${CATKIN_PACKAGE_SHARE_DESTINATION}")
+else()
+    set(PROJECT_VERSION_MAJOR 1)
+    set(PROJECT_VERSION_MINOR 0)
+    set(PROJECT_VERSION_PATCH 0)
 
-    configure_package_config_file(  "cmake/cpputConfig.cmake.in"
-                                    "${PROJECT_BINARY_DIR}/cpputConfig.cmake"
-                                    INSTALL_DESTINATION "${CMAKE_INSTALL_PREFIX}/share/cpput/"
-                                    NO_SET_AND_CHECK_MACRO
-                                    NO_CHECK_REQUIRED_COMPONENTS_MACRO)
+    if (NOT CPPUT_EMBEDDED)
+        include(CMakePackageConfigHelpers)
+        set(CPPUT_INSTALL_PATH "${CMAKE_INSTALL_PREFIX}/share/cpput/")
+        set(CPPUT_INCLUDES "${CMAKE_INSTALL_PREFIX}/include")
 
-    write_basic_package_version_file(
-        ${PROJECT_BINARY_DIR}/cpputConfigVersion.cmake
-        VERSION ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT_VERSION_PATCH}
-        COMPATIBILITY SameMajorVersion)
+        configure_package_config_file(  "cmake/cpputConfig.cmake.in"
+                                        "${PROJECT_BINARY_DIR}/cpputConfig.cmake"
+                                        INSTALL_DESTINATION "${CMAKE_INSTALL_PREFIX}/share/cpput/"
+                                        NO_SET_AND_CHECK_MACRO
+                                        NO_CHECK_REQUIRED_COMPONENTS_MACRO)
+
+        write_basic_package_version_file(
+            ${PROJECT_BINARY_DIR}/cpputConfigVersion.cmake
+            VERSION ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT_VERSION_PATCH}
+            COMPATIBILITY SameMajorVersion)
 
 
-    install (FILES "${PROJECT_BINARY_DIR}/cpputConfig.cmake"
-             DESTINATION "${CPPUT_INSTALL_PATH}/")
+        install (FILES "${PROJECT_BINARY_DIR}/cpputConfig.cmake"
+                 DESTINATION "${CPPUT_INSTALL_PATH}/")
 
-    install (FILES "${PROJECT_BINARY_DIR}/cpputConfigVersion.cmake"
-             DESTINATION "${CPPUT_INSTALL_PATH}/")
+        install (FILES "${PROJECT_BINARY_DIR}/cpputConfigVersion.cmake"
+                 DESTINATION "${CPPUT_INSTALL_PATH}/")
+    endif()
 endif()
 # --------------
-
 
 # --------------
 # Install
 # --------------
+if (CPPUT_CATKIN_BUILD)
+    set(CPPUT_INCLUDE_INSTALL_DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION})
+else()
+    set(CPPUT_INCLUDE_INSTALL_DESTINATION ${CMAKE_INSTALL_PREFIX}/include/${CPPUT_ID_LOWER_CASE})
+endif()
+
 if (CPPUT_SELECT_HEADERS)
-    install (DIRECTORY "${PROJECT_SOURCE_DIR}/include/${CPPUT_ID_LOWER_CASE}"
-             DESTINATION "${CMAKE_INSTALL_PREFIX}/include/${CPPUT_ID_LOWER_CASE}/"
+    install (DIRECTORY "${PROJECT_SOURCE_DIR}/include/cpput"
+             DESTINATION "${CPPUT_INCLUDE_INSTALL_DESTINATION}"
              FILES_MATCHING PATTERN "*.h")
 else()
     foreach (CPPUT_HEADER ${CPPUT_SELECT_HEADERS})
-        install (FILES "${PROJECT_SOURCE_DIR}/include/${CPPUT_ID_LOWER_CASE}/${CPPUT_HEADER}"
-                 DESTINATION "${CMAKE_INSTALL_PREFIX}/include/${CPPUT_ID_LOWER_CASE}/${CPPUT_HEADER}"
+        install (FILES "${PROJECT_SOURCE_DIR}/include/cpput/${CPPUT_HEADER}"
+                 DESTINATION "${CPPUT_INCLUDE_INSTALL_DESTINATION}/${CPPUT_HEADER}"
                  FILES_MATCHING PATTERN "*.h")
     endforeach()
 endif()
