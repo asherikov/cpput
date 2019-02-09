@@ -7,15 +7,15 @@
     @brief Print stacktrace as explained at https://panthema.net/2008/0901-stacktrace-demangled/
 */
 
-#ifndef H_CPPUT_PRINT_BACKTRACE
-#define H_CPPUT_PRINT_BACKTRACE
+#ifndef H_@CPPUT_ID@_PRINT_BACKTRACE
+#define H_@CPPUT_ID@_PRINT_BACKTRACE
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <execinfo.h>
 #include <cxxabi.h>
 
-namespace cpput
+namespace @CPPUT_ID_LOWER_CASE@
 {
     /** Print a demangled stack backtrace of the caller function to FILE* out. */
     static inline void print_backtrace(FILE *out = stderr)

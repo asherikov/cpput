@@ -8,16 +8,16 @@
     @brief Deprecation macro
 */
 
-#ifndef H_CPPUT_DEPRECATION
-#define H_CPPUT_DEPRECATION
+#ifndef H_@CPPUT_ID@_DEPRECATION
+#define H_@CPPUT_ID@_DEPRECATION
 
 #ifdef __GNUC__
 
-#    define CPPUT_DEPRECATED __attribute__((deprecated))
+#    define @CPPUT_ID@_DEPRECATED __attribute__((deprecated))
 
 #else
 
-#    define CPPUT_DEPRECATED
+#    define @CPPUT_ID@_DEPRECATED
 
 #endif
 

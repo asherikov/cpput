@@ -1,3 +1,12 @@
+# --------------
+# flags
+# --------------
+include(cmakeut_compiler_flags)
+cmakeut_compiler_flags("c++11")
+set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${CMAKEUT_CXX_FLAGS}")
+# --------------
+
+
 set(TEST_LIBS "")
 set(TEST_TARGETS "")
 set(TEST_FLAGS "")

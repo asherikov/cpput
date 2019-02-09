@@ -7,11 +7,12 @@
     @brief
 */
 
-#pragma once
+#ifndef H_@CPPUT_ID@_LOCATION
+#define H_@CPPUT_ID@_LOCATION
 
 #include <cstddef>
 
-namespace humoto
+namespace @CPPUT_ID_LOWER_CASE@
 {
     /**
      * @brief Location of a data chunk (offset + length).
@@ -119,3 +120,5 @@ namespace humoto
         }
     };
 }  // namespace humoto
+
+#endif

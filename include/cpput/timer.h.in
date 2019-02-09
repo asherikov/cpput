@@ -8,14 +8,14 @@
     @brief Basic timer
 */
 
-#ifndef H_CPPUT_TIMER
-#define H_CPPUT_TIMER
+#ifndef H_@CPPUT_ID@_TIMER
+#define H_@CPPUT_ID@_TIMER
 
 #include <iostream>
 #include <iomanip>
 #include <sys/time.h>
 
-namespace cpput
+namespace @CPPUT_ID_LOWER_CASE@
 {
     /**
      * @brief Timer
@@ -89,6 +89,6 @@ namespace cpput
         struct timeval end_time;
         double timediff;
     };
-}  // namespace cpput
+}  // namespace @CPPUT_ID_LOWER_CASE@
 
 #endif

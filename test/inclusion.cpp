@@ -5,7 +5,7 @@
     @brief
 */
 
-#include <cpput/config.h>
+#include <cpput/cpput_config.h>
 #include <cpput/all.h>
 #include "boost_utf_common.h"
 
