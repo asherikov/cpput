@@ -47,6 +47,7 @@ allheader:
 
 gitignore:
 	echo "build" > .gitignore
-	ls ${INCLUDE_DIR}/*.in | sed 's/\.in$$//g' >> .gitignore
+	ls ${INCLUDE_DIR}*.in | sed 's/\.in$$//g' >> .gitignore
+	ls ${INCLUDE_DIR}*.in | sed 's/\.in$$//g' | sed 's=${INCLUDE_DIR}=${INCLUDE_DIR}cpput_=' >> .gitignore
 
 .PHONY: build test 3rdparty
