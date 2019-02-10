@@ -147,14 +147,13 @@ if (NOT CPPUT_CATKIN_BUILD)
 endif()
 
 if (CPPUT_SELECT_HEADERS)
-    install (DIRECTORY "${PROJECT_SOURCE_DIR}/include/cpput"
-             DESTINATION "${CPPUT_INCLUDE_INSTALL_DESTINATION}"
-             FILES_MATCHING PATTERN "*.h")
-else()
     foreach (CPPUT_HEADER ${CPPUT_SELECT_HEADERS})
         install (FILES "${PROJECT_SOURCE_DIR}/include/cpput/${CPPUT_HEADER}"
-                 DESTINATION "${CPPUT_INCLUDE_INSTALL_DESTINATION}/${CPPUT_HEADER}"
-                 FILES_MATCHING PATTERN "*.h")
+                 DESTINATION "${CPPUT_INCLUDE_INSTALL_DESTINATION}/")
     endforeach()
+else()
+    install (DIRECTORY "${PROJECT_SOURCE_DIR}/include/cpput/"
+             DESTINATION "${CPPUT_INCLUDE_INSTALL_DESTINATION}"
+             FILES_MATCHING PATTERN "*.h")
 endif()
 # --------------
