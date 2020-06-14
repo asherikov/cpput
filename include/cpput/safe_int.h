@@ -3,7 +3,7 @@
 
 /*-----------------------------------------------------------------------------------------------------------
 SafeInt.hpp
-Version 3.0.22p
+Version 3.0.23p
 
 This header implements an integer handling class designed to catch
 unsafe integer operations
@@ -565,6 +565,7 @@ SIZE_T_CAST_NEEDED                 - some compilers complain if there is not a c
 *
 */
 
+// Warning - this very old work-around will be deprecated in future releases. 
 #if defined VISUAL_STUDIO_SAFEINT_COMPAT
 namespace msl
 {
@@ -1050,7 +1051,7 @@ public:
         return (T)SignedNegation<std::int64_t>::Value(t);
     }
 
-    _CONSTEXPR14 static bool Negative(T t, T& /*out*/)
+    _CONSTEXPR14 static bool Negative(T , T& /*out*/)
     {
         // This will only be used by the SafeNegation function
         return false;
@@ -7116,10 +7117,9 @@ _CONSTEXPR11 SafeInt< T, E > operator |( U lhs, SafeInt< T, E > rhs ) SAFEINT_NO
     return SafeInt< T, E >( BinaryOrHelper< T, U, BinaryMethod< T, U >::method >::Or( (T)rhs, lhs ) );
 }
 
-#endif //SAFEINT_HPP
-
 #if defined VISUAL_STUDIO_SAFEINT_COMPAT
 } // utilities
 } // msl
 #endif
 
+#endif //SAFEINT_HPP

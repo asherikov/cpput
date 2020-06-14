@@ -1,19 +1,9 @@
 #ifndef H_CPPUT_ALL
 #define H_CPPUT_ALL
+#include "backward.h"
 #include "better_enum.h"
-#include "config.h"
-#include "deprecation.h"
-#include "exception.h"
-#include "flags.h"
-#include "floating_point_utils.h"
-#include "location.h"
-#include "math_utils.h"
-#include "misc.h"
 #include "popl.h"
-#include "print_backtrace.h"
 #include "safe_int.h"
-#include "timer.h"
-#include "visibility.h"
 #include "config.h"
 #include "deprecation.h"
 #include "exception.h"
@@ -24,5 +14,7 @@
 #include "misc.h"
 #include "print_backtrace.h"
 #include "timer.h"
+#include "trace.h"
+#include "traits.h"
 #include "visibility.h"
 #endif
