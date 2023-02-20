@@ -35,8 +35,8 @@ endif()
 
 string(TOLOWER "${CPPUT_ID}" CPPUT_ID_LOWER_CASE)
 
-set(CPPUT_HEADER_DIR "${PROJECT_SOURCE_DIR}/include/cpput")
-set(CPPUT_OUTPUT_HEADER_DIR "${PROJECT_BINARY_DIR}/include/cpput")
+set(CPPUT_HEADER_DIR "${PROJECT_SOURCE_DIR}/include/${PROJECT_NAME}")
+set(CPPUT_OUTPUT_HEADER_DIR "${PROJECT_BINARY_DIR}/include/${PROJECT_NAME}")
 # --------------
 
 
@@ -48,14 +48,14 @@ if (NOT CPPUT_EMBEDDED)
     set(CPPUT_INSTALL_PATH "${CMAKE_INSTALL_PREFIX}/share/cpput/")
     set(CPPUT_INCLUDES "${CMAKE_INSTALL_PREFIX}/include")
 
-    configure_package_config_file(  "cmake/cpputConfig.cmake.in"
-                                    "${PROJECT_BINARY_DIR}/cpputConfig.cmake"
-                                    INSTALL_DESTINATION "${CMAKE_INSTALL_PREFIX}/share/cpput/"
-                                    NO_SET_AND_CHECK_MACRO
-                                    NO_CHECK_REQUIRED_COMPONENTS_MACRO)
+    file(
+        WRITE
+        "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Config.cmake"
+        "include(\"\${CMAKE_CURRENT_LIST_DIR}/${PROJECT_NAME}Targets.cmake\")"
+    )
 
     write_basic_package_version_file(
-        ${PROJECT_BINARY_DIR}/cpputConfigVersion.cmake
+        ${PROJECT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake
         VERSION ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}.${PROJECT_VERSION_PATCH}
         COMPATIBILITY SameMajorVersion)
 endif()
@@ -95,8 +95,21 @@ foreach (CPPUT_HEADER ${CPPUT_HEADERS})
                         "${CPPUT_OUTPUT_HEADER_DIR}/${CPPUT_HEADER_NO_SUFFIX}")
     endif()
 endforeach()
+# --------------
 
-include_directories ("${CPPUT_OUTPUT_HEADER_DIR}/../")
+
+# --------------
+# library
+# --------------
+if(NOT CPPUT_EMBEDDED)
+    add_library(${PROJECT_NAME} INTERFACE)
+
+    target_include_directories(${PROJECT_NAME} INTERFACE
+        $<BUILD_INTERFACE:${CPPUT_OUTPUT_HEADER_DIR}/../>
+    )
+    set_property(TARGET ${PROJECT_NAME} PROPERTY INTERFACE_${PROJECT_NAME}_MAJOR_VERSION ${PROJECT_VERSION_MAJOR})
+    set_property(TARGET ${PROJECT_NAME} APPEND PROPERTY COMPATIBLE_INTERFACE_STRING ${PROJECT_VERSION_MAJOR})
+endif()
 # --------------
 
 
@@ -129,15 +142,31 @@ if (CPPUT_EMBEDDED)
                 file(   COPY        "${CPPUT_OUTPUT_HEADER_DIR}/${CPPUT_HEADER}"
                         DESTINATION "${PROJECT_BINARY_DIR}/")
                 file(   RENAME      "${PROJECT_BINARY_DIR}/${CPPUT_HEADER}"
-                                    "${CPPUT_EMBEDDED_COPY_TO_DIR}/cpput_${CPPUT_HEADER}")
+                                    "${CPPUT_EMBEDDED_COPY_TO_DIR}/${PROJECT_NAME}_${CPPUT_HEADER}")
             endif()
         endforeach()
     endif()
 else()
-    install (FILES "${PROJECT_BINARY_DIR}/cpputConfig.cmake"
+    install(
+        TARGETS ${PROJECT_NAME} EXPORT ${PROJECT_NAME}
+        INCLUDES DESTINATION include
+    )
+
+    export(EXPORT ${PROJECT_NAME}
+        FILE "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Targets.cmake"
+        NAMESPACE ${PROJECT_NAME}::
+    )
+
+    install(EXPORT ${PROJECT_NAME}
+        FILE ${PROJECT_NAME}Targets.cmake
+        NAMESPACE ${PROJECT_NAME}::
+        DESTINATION share/${PROJECT_NAME}/
+    )
+
+    install (FILES "${PROJECT_BINARY_DIR}/${PROJECT_NAME}Config.cmake"
              DESTINATION "${CPPUT_INSTALL_PATH}/")
 
-    install (FILES "${PROJECT_BINARY_DIR}/cpputConfigVersion.cmake"
+    install (FILES "${PROJECT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake"
              DESTINATION "${CPPUT_INSTALL_PATH}/")
 
     if (CPPUT_SELECT_HEADERS)

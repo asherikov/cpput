@@ -7,7 +7,7 @@ set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${CMAKEUT_CXX_FLAGS}")
 # --------------
 
 
-set(TEST_LIBS "")
+set(TEST_LIBS "${PROJECT_NAME}")
 set(TEST_TARGETS "")
 set(TEST_FLAGS "")
 include(cmakeut_add_cpp_test)
