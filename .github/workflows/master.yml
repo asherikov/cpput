@@ -1,0 +1,22 @@
+on: [push, pull_request]
+
+env:
+    APT_INSTALL: sudo apt install -y --no-install-recommends
+
+
+jobs:
+    focal_test:
+        runs-on: ubuntu-20.04
+
+        steps:
+            - uses: actions/checkout@v3
+            - run: make install_ubuntu_test_deps
+            - run: make test
+
+    jammy_test:
+        runs-on: ubuntu-22.04
+
+        steps:
+            - uses: actions/checkout@v3
+            - run: make install_ubuntu_test_deps
+            - run: make test

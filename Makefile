@@ -1,3 +1,4 @@
+APT_INSTALL=sudo apt install -y --no-install-recommends
 BUILD_DIR?=build
 MAKE_FLAGS?=-j1
 
@@ -51,5 +52,9 @@ gitignore:
 	echo "build" > .gitignore
 	ls ${INCLUDE_DIR}*.in | sed 's/\.in$$//g' >> .gitignore
 	ls ${INCLUDE_DIR}*.in | sed 's/\.in$$//g' | sed 's=${INCLUDE_DIR}=${INCLUDE_DIR}cpput_=' >> .gitignore
+
+install_ubuntu_test_deps:
+	sudo ${APT_INSTALL} libboost-all-dev libeigen3-dev
+	git submodule update --init
 
 .PHONY: build test 3rdparty
