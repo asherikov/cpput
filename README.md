@@ -14,4 +14,4 @@ Third party utils (likely to be outdated):
 - `better_enums` -- http://github.com/aantron/better-enums
 - `popl` -- https://github.com/badaix/popl
 - `print_backtrace` -- https://panthema.net/2008/0901-stacktrace-demangled/
-- `SafeInt` -- https://github.com/dcleblanc/SafeInt
+- `SML` -- https://github.com/boost-ext/sml

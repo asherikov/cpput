@@ -10,7 +10,6 @@ include/cpput/misc.h
 include/cpput/print_backtrace.h
 include/cpput/timer.h
 include/cpput/trace.h
-include/cpput/traits.h
 include/cpput/visibility.h
 include/cpput/cpput_config.h
 include/cpput/cpput_deprecation.h
@@ -24,4 +23,3 @@ include/cpput/cpput_print_backtrace.h
 include/cpput/cpput_timer.h
 include/cpput/cpput_visibility.h
 include/cpput/cpput_trace.h
-include/cpput/cpput_traits.h

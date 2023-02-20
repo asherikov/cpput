@@ -14,6 +14,7 @@
 
 BOOST_AUTO_TEST_CASE(Inclusion)
 {
+    cpput::setSignalHandler(handleSignal, { SIGINT, SIGTERM });
     cpput::print_backtrace();
     BOOST_REQUIRE(true);
 }

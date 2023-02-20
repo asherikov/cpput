@@ -406,7 +406,8 @@ continue_with(T, U value) { return value; }
 
 // Values array declaration helper.
 
-//! Get intrinsic value of an (Enum::value) by taking advantage of C-conversion's parentheses priority
+//! Get intrinsic value of an (Enum::value) by taking advantage of
+// C-conversion's parentheses priority
 template <typename EnumType>
 struct _eat_assign {
     explicit BETTER_ENUMS_CONSTEXPR_ _eat_assign(EnumType value) : _value(value)
@@ -641,7 +642,7 @@ BETTER_ENUMS_ID(GenerateSwitchType(Underlying, __VA_ARGS__))                   \
                                                                                \
 }                                                                              \
                                                                                \
-class BETTER_ENUMS_CLASS_ATTRIBUTE Enum {                                                                   \
+class BETTER_ENUMS_CLASS_ATTRIBUTE Enum {                                      \
   private:                                                                     \
     typedef ::better_enums::optional<Enum>                  _optional;         \
     typedef ::better_enums::optional<std::size_t>           _optional_index;   \
@@ -671,12 +672,12 @@ class BETTER_ENUMS_CLASS_ATTRIBUTE Enum {                                       
                                                                                \
     BETTER_ENUMS_CONSTEXPR_ std::size_t _to_index() const;                     \
     BETTER_ENUMS_IF_EXCEPTIONS(                                                \
-    BETTER_ENUMS_CONSTEXPR_ static Enum _from_index(std::size_t value);        \
+    BETTER_ENUMS_CONSTEXPR_ static Enum _from_index(std::size_t index);        \
     )                                                                          \
     BETTER_ENUMS_CONSTEXPR_ static Enum                                        \
-    _from_index_unchecked(std::size_t value);                                  \
+    _from_index_unchecked(std::size_t index);                                  \
     BETTER_ENUMS_CONSTEXPR_ static _optional                                   \
-    _from_index_nothrow(std::size_t value);                                    \
+    _from_index_nothrow(std::size_t index);                                    \
                                                                                \
     ToStringConstexpr const char* _to_string() const;                          \
     BETTER_ENUMS_IF_EXCEPTIONS(                                                \
@@ -1312,7 +1313,7 @@ BETTER_ENUMS_CONSTEXPR_ map<Enum, T> make_map(T (*f)(Enum))
 }
 
 #define BETTER_ENUMS_DECLARE_STD_HASH(type)                                    \
-	namespace std {                                                            \
+    namespace std {                                                            \
     template <> struct hash<type>                                              \
     {                                                                          \
         size_t operator()(const type &x) const                                 \
@@ -1320,6 +1321,6 @@ BETTER_ENUMS_CONSTEXPR_ map<Enum, T> make_map(T (*f)(Enum))
             return std::hash<size_t>()(x._to_integral());                      \
         }                                                                      \
     };                                                                         \
-	}
+    }
 
 #endif // #ifndef BETTER_ENUMS_ENUM_H

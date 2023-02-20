@@ -20,4 +20,19 @@
 
 #define @CPPUT_ID@_MACRO_SUBSTITUTE(macro) macro
 
+#define @CPPUT_ID@_DISABLE_CLASS_COPY(Class)                                                                           \
+public:                                                                                                                \
+    Class(const Class &) = delete;                                                                                     \
+    Class &operator=(const Class &) = delete;                                                                          \
+    Class(Class &&) = delete;                                                                                          \
+    Class &operator=(Class &&) = delete;
+
+namespace @CPPUT_ID_LOWER_CASE@
+{
+    template <typename T>
+    inline void ignoreResult(const T && /* unused result */)
+    {
+    }
+}
+
 #endif
