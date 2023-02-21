@@ -1,0 +1,30 @@
+/**
+    @file
+    @author  Alexander Sherikov
+
+    @copyright 2022 Alexander Sherikov, Licensed under the Apache License, Version 2.0.
+    (see @ref LICENSE or http://www.apache.org/licenses/LICENSE-2.0)
+
+    @brief
+*/
+
+#pragma once
+
+#include <memory>
+
+namespace @CPPUT_ID_LOWER_CASE@
+{
+    template <class t_Base>
+    class PtrAddon
+    {
+    public:
+        using Ptr = std::shared_ptr<t_Base>;
+        using ConstPtr = std::shared_ptr<const t_Base>;
+
+        template <class... t_Args>
+        static Ptr makePtr(t_Args &&...args)
+        {
+            return std::make_shared<t_Base>(std::forward<t_Args>(args)...);
+        }
+    };
+}  // namespace

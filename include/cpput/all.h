@@ -2,6 +2,7 @@
 #define H_CPPUT_ALL
 #include "backward.h"
 #include "better_enum.h"
+#include "enum.h"
 #include "popl.h"
 #include "signal_handler.h"
 #include "sml.h"
@@ -13,6 +14,7 @@
 #include "location.h"
 #include "math_utils.h"
 #include "misc.h"
+#include "pointer.h"
 #include "print_backtrace.h"
 #include "signal.h"
 #include "timer.h"
