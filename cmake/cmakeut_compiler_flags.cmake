@@ -1,5 +1,5 @@
 function(cmakeut_compiler_flags STANDARD)
-    set (CXX_WARNINGS "-Wall -Wextra -Wshadow -Werror -pedantic-errors")
+    set (CXX_WARNINGS "-Wall -Wextra -Werror -pedantic-errors")
     # --save-temps
     set (CXX_OTHER "-fPIC")
 
