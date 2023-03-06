@@ -14,17 +14,17 @@
 
 namespace @CPPUT_ID_LOWER_CASE@
 {
-    template <class t_Base>
-    class PtrAddon
+    template <class t_Self, class... t_Bases>
+    class PtrAddon : public t_Bases...
     {
     public:
-        using Ptr = std::shared_ptr<t_Base>;
-        using ConstPtr = std::shared_ptr<const t_Base>;
+        using Ptr = std::shared_ptr<t_Self>;
+        using ConstPtr = std::shared_ptr<const t_Self>;
 
         template <class... t_Args>
         static Ptr makePtr(t_Args &&...args)
         {
-            return std::make_shared<t_Base>(std::forward<t_Args>(args)...);
+            return std::make_shared<t_Self>(std::forward<t_Args>(args)...);
         }
     };
 }  // namespace
