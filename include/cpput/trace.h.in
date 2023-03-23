@@ -124,7 +124,7 @@ namespace @CPPUT_ID_LOWER_CASE@
 
 #    define @CPPUT_ID@_TRACE_FUNCTION                                                                                   \
         char trace_path[] = __FILE__;                                                                                   \
-        ariles2::trace::Tracer tracer(@CPPUT_ID@_TRACE_FUNCTION_NAME, basename(trace_path), __LINE__);
+        @CPPUT_ID_LOWER_CASE@::trace::Tracer tracer(@CPPUT_ID@_TRACE_FUNCTION_NAME, basename(trace_path), __LINE__);
 #    define @CPPUT_ID@_TRACE_VALUE(variable) tracer.output("Value: ", #variable, " = ", variable);
 #    define @CPPUT_ID@_TRACE_TYPE(variable) tracer.output("Type: ", tracer.demangle(typeid(variable).name()));
 #else
