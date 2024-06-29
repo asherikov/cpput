@@ -2,7 +2,7 @@
 # flags
 # --------------
 include(cmakeut_compiler_flags)
-cmakeut_compiler_flags("c++14")
+cmakeut_compiler_flags("c++17")
 set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${CMAKEUT_CXX_FLAGS}")
 # --------------
 

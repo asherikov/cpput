@@ -7,12 +7,12 @@
     @brief
 */
 
-#ifndef H_@CPPUT_ID@_MATH
-#define H_@CPPUT_ID@_MATH
+#ifndef H_CPPUT_MATH
+#define H_CPPUT_MATH
 
 #include <cmath>
 
-namespace @CPPUT_ID_LOWER_CASE@
+namespace cpput
 {
     namespace math
     {
@@ -72,6 +72,6 @@ namespace @CPPUT_ID_LOWER_CASE@
             return (radians * 180 / g_pi);
         }
     }  // namespace math
-}  // namespace @CPPUT_ID_LOWER_CASE@
+}  // namespace cpput
 
 #endif

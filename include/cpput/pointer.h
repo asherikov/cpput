@@ -12,7 +12,7 @@
 
 #include <memory>
 
-namespace @CPPUT_ID_LOWER_CASE@
+namespace cpput
 {
     template <class t_Self, class... t_Bases>
     class PtrAddon : public t_Bases...

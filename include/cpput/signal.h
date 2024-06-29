@@ -12,7 +12,7 @@
 
 #include <csignal>
 
-namespace @CPPUT_ID_LOWER_CASE@
+namespace cpput
 {
     // template <class t_SignalHandler>
     // inline bool setSignalHandler(t_SignalHandler handler, const std::vector<int> &signals)
@@ -31,4 +31,4 @@ namespace @CPPUT_ID_LOWER_CASE@
         }
         return (true);
     }
-}  // namespace
+}  // namespace cpput

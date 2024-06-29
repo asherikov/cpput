@@ -5,8 +5,6 @@
     @brief
 */
 
-#include <cpput/config.h>
-
 #define CPPUT_TRACE_ENABLE
 #include <cpput/all.h>
 #include "boost_utf_common.h"

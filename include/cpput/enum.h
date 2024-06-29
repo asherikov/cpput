@@ -15,6 +15,6 @@
 // clang-format off
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wold-style-cast"  // doesnt seem to work (https://gcc.gnu.org/bugzilla/show_bug.cgi?id=53431)
-#define @CPPUT_ID@_ENUM(name, ...) BETTER_ENUM(name, int, UNDEFINED=0, __VA_ARGS__)  // NOLINT
+#define CPPUT_ENUM(name, ...) BETTER_ENUM(name, int, UNDEFINED=0, __VA_ARGS__)  // NOLINT
 #pragma GCC diagnostic pop
 // clang-format on

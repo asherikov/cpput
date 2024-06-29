@@ -8,31 +8,31 @@
     @brief Various one-liners
 */
 
-#ifndef H_@CPPUT_ID@_MISC
-#define H_@CPPUT_ID@_MISC
+#ifndef H_CPPUT_MISC
+#define H_CPPUT_MISC
 
 /**
  * Sometimes it is not possible to omit name of an unused parameter, in such
  * cases this macro can be used to suppress compiler warnings about unused
  * parameters.
  */
-#define @CPPUT_ID@_UNUSED_ARG(parameter) (void)parameter;
+#define CPPUT_UNUSED_ARG(parameter) (void)parameter;
 
-#define @CPPUT_ID@_MACRO_SUBSTITUTE(macro) macro
+#define CPPUT_MACRO_SUBSTITUTE(macro) macro
 
-#define @CPPUT_ID@_DISABLE_CLASS_COPY(Class)                                                                           \
+#define CPPUT_DISABLE_CLASS_COPY(Class)                                                                                \
 public:                                                                                                                \
     Class(const Class &) = delete;                                                                                     \
     Class &operator=(const Class &) = delete;                                                                          \
     Class(Class &&) = delete;                                                                                          \
     Class &operator=(Class &&) = delete;
 
-namespace @CPPUT_ID_LOWER_CASE@
+namespace cpput
 {
     template <typename T>
     inline void ignoreResult(const T && /* unused result */)
     {
     }
-}
+}  // namespace cpput
 
 #endif
