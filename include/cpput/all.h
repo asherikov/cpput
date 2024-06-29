@@ -2,6 +2,7 @@
 #define H_CPPUT_ALL
 #include "backward.h"
 #include "better_enum.h"
+#include "concat.h"
 #include "enum.h"
 #include "exception.h"
 #include "flags.h"
