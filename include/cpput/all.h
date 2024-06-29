@@ -12,7 +12,6 @@
 #include "pointer.h"
 #include "popl.h"
 #include "print_backtrace.h"
-#include "safe_int.h"
 #include "signal.h"
 #include "signal_handler.h"
 #include "sml.h"
