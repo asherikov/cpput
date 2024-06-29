@@ -100,7 +100,7 @@ if (CPPUT_EMBEDDED_COPY_TO_DIR)
                 file(   COPY        "${CPPUT_HEADER_DIR}/${CPPUT_HEADER}"
                         DESTINATION "${PROJECT_BINARY_DIR}/")
                 file(   RENAME      "${PROJECT_BINARY_DIR}/${CPPUT_HEADER}"
-                                    "${CPPUT_EMBEDDED_COPY_TO_DIR}/${PROJECT_NAME}_${CPPUT_HEADER}")
+                                    "${CPPUT_EMBEDDED_COPY_TO_DIR}/${CPPUT_HEADER}")
             endif()
         endforeach()
     endif()
