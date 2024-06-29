@@ -11,12 +11,13 @@
 #ifndef H_CPPUT_EXCEPTION
 #define H_CPPUT_EXCEPTION
 
-#include <string>
 #include <stdexcept>
+#include "concat.h"
 
 #define CPPUT_THROW_EXCEPTION(exception_type, message) throw exception_type((message))
 
-#define CPPUT_THROW(s) CPPUT_THROW_EXCEPTION(std::runtime_error, (std::string("In ") + __func__ + "() // " + (s)))
+#define CPPUT_THROW(...)                                                                                               \
+    CPPUT_THROW_EXCEPTION(std::runtime_error, cpput::concat::simple("In ", __func__, "() // ", __VA_ARGS__))
 
 
 #define CPPUT_PERSISTENT_ASSERT(condition, message)                                                                    \

@@ -7,7 +7,7 @@ following conditions:
 - all utilities are header only;
 - no external dependencies.
 
-Utilities may require C++11 support.
+Utilities may require C++17 support.
 
 Third party utils (likely to be outdated):
 - `backward-cpp` -- https://github.com/bombela/backward-cpp
