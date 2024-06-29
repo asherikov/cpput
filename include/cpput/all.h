@@ -15,7 +15,7 @@
 #include "print_backtrace.h"
 #include "signal.h"
 #include "signal_handler.h"
-#include "sml.h"
+#include "sml_wrap.h"
 #include "timer.h"
 #include "trace.h"
 #include "visibility.h"
