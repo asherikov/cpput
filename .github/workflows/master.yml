@@ -5,18 +5,18 @@ env:
 
 
 jobs:
-    focal_test:
-        runs-on: ubuntu-20.04
-
-        steps:
-            - uses: actions/checkout@v4
-            - run: make install_ubuntu_test_deps
-            - run: make test
-
     jammy_test:
         runs-on: ubuntu-22.04
 
         steps:
-            - uses: actions/checkout@v4
+            - uses: actions/checkout@v5
+            - run: make install_ubuntu_test_deps
+            - run: make test
+
+    noble_test:
+        runs-on: ubuntu-24.04
+
+        steps:
+            - uses: actions/checkout@v5
             - run: make install_ubuntu_test_deps
             - run: make test
