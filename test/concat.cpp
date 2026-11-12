@@ -5,6 +5,7 @@
     @brief
 */
 
+#include <filesystem>
 #include <cpput/concat.h>
 #include "boost_utf_common.h"
 
@@ -27,6 +28,9 @@ BOOST_AUTO_TEST_CASE(Concat)
 
     BOOST_REQUIRE_EQUAL("abc", cpput::concat::simple("a", "b", "c"));
     BOOST_REQUIRE_EQUAL("abc", cpput::concat::reserve("a", "b", "c"));
+
+    const std::filesystem::path path = "/usr/lib/sendmail.cf";
+    BOOST_REQUIRE_EQUAL("/tmp/usr/lib/sendmail.cf", cpput::concat::simple("/tmp", path));
 
     const std::string first = "In ";
     const std::string expected = first + __func__ + "() // message";

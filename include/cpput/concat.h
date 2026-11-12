@@ -39,7 +39,8 @@ namespace cpput
         std::string simple(t_String &&...strings)
         {
             static_assert(
-                    (std::is_convertible_v<t_String, std::string_view> && ...),
+                    (std::is_convertible_v<t_String, std::string_view> && ...)
+                            || (std::is_convertible_v<t_String, std::string> && ...),
                     "cpput::concat::simple() only accepts strings.");
             std::string result;
             static_cast<void>((result += ... += strings));
